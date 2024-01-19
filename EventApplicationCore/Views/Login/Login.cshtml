@@ -1,0 +1,44 @@
+﻿@model EventApplicationCore.Model.LoginViewModel
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-header bg-primary text-white text-center">
+                    <h2>Login</h2>
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.errormessage != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @ViewBag.errormessage
+                        </div>
+                    }
+
+                    <form asp-controller="Login" asp-action="Login" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input autocomplete="off" asp-for="Username" type="text" class="form-control" id="username" />
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input autocomplete="off" asp-for="Password" type="password" class="form-control" id="password" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div class="d-grid gap-2">
+                            <button id="Submit1" class="btn btn-primary" type="submit">Sign in</button>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            No account? @Html.ActionLink("Create one!", "Registration", "Registration")
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
